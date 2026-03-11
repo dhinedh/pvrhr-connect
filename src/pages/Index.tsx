@@ -26,6 +26,12 @@ const clients = [
   "GH India Auto Parts India Pvt Ltd",
 ];
 
+const testimonials = [
+  { name: "Rajesh Kumar", role: "HR Manager, Avary Tech", rating: 5, review: "PVRHR has been instrumental in providing skilled manpower for our electronics manufacturing unit. Their recruitment process is efficient and reliable." },
+  { name: "Sundar Rajan", role: "Operations Head, Steel Strips Wheels", rating: 5, review: "We've partnered with PVRHR for over two years. Their understanding of automobile industry staffing needs is exceptional." },
+  { name: "Priya Lakshmi", role: "Plant Manager, Nifco South India", rating: 4, review: "Quick turnaround times and quality candidates. PVRHR consistently delivers trained workforce that meets our production requirements." },
+];
+
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
