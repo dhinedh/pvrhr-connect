@@ -43,95 +43,164 @@ const stagger = {
 
 const Index = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background text-foreground selection:bg-primary/30 selection:text-primary">
       {/* Hero */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0">
-          <img src={heroBg} alt="" className="w-full h-full object-cover scale-105" />
-          <div className="absolute inset-0 hero-gradient opacity-90" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent" />
+      <section className="relative min-h-[95vh] pt-32 flex items-center justify-center overflow-hidden">
+        {/* Advanced Background */}
+        <div className="absolute inset-0 z-0 bg-[var(--hero-bg-light)]">
+          <img src={heroBg} alt="" className="w-full h-full object-cover opacity-[0.15] dark:opacity-40 scale-110" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,hsla(var(--primary),0.1),transparent_50%)] dark:bg-[radial-gradient(circle_at_top_right,rgba(245,158,11,0.08),transparent_50%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,hsla(var(--primary),0.05),transparent_40%)]" />
+          <div className="absolute inset-0 bg-background/40 dark:bg-background/60 backdrop-blur-[1px]" />
         </div>
-        {/* Decorative shapes */}
-        <div className="absolute top-20 right-10 w-72 h-72 bg-primary-glow/10 rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-20 left-10 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-float" style={{ animationDelay: "1.5s" }} />
-        
-        <div className="relative z-10 container-narrow mx-auto px-4 text-center">
+
+        {/* Floating elements */}
+        <motion.div 
+          animate={{ x: [0, 50, 0], y: [0, -50, 0], scale: [1, 1.1, 1] }}
+          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px] mix-blend-multiply dark:mix-blend-soft-light" 
+        />
+        <motion.div 
+          animate={{ x: [0, -60, 0], y: [0, 60, 0], scale: [1, 1.2, 1] }}
+          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-1/4 left-1/4 w-[600px] h-[600px] bg-accent/10 rounded-full blur-[150px] mix-blend-multiply dark:mix-blend-soft-light" 
+        />
+
+        <div className="relative z-10 container-narrow mx-auto px-6 text-center">
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94] as const }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
             <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2, duration: 0.6 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-foreground/10 backdrop-blur-sm border border-primary-foreground/20 mb-8"
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-card/40 backdrop-blur-xl border border-border/10 mb-8 shadow-2xl"
             >
-              <Sparkles className="w-4 h-4 text-accent" />
-              <span className="text-sm font-medium text-primary-foreground/90">Tamil Nadu's Trusted HR Partner</span>
+              <Sparkles className="w-4 h-4 text-primary animate-pulse" />
+              <span className="text-[13px] font-semibold tracking-wide text-foreground uppercase">The Gold Standard in HR</span>
             </motion.div>
             
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-extrabold text-primary-foreground mb-6 leading-[1.1] tracking-tight">
-              Building Workforce
+            <motion.h1 
+              initial={{ opacity: 0, scale: 0.9, filter: "blur(20px)" }}
+              animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+              className="text-5xl md:text-7xl lg:text-8xl font-heading font-extrabold mb-6 leading-[1] tracking-tight text-foreground dark:text-white"
+            >
+              Precision Talent
               <br />
-              <span className="bg-gradient-to-r from-accent to-accent/70 bg-clip-text text-transparent">Solutions</span> That Work
-            </h1>
-            <p className="text-lg md:text-xl text-primary-foreground/80 mb-12 font-body max-w-2xl mx-auto leading-relaxed">
-              Delivering skilled manpower and comprehensive HR solutions to manufacturing, automobile, and electronics industries across Tamil Nadu.
-            </p>
-            <div className="flex flex-wrap gap-4 justify-center">
-              <Button size="lg" variant="hero" asChild className="rounded-full px-8 h-13">
-                <Link to="/services">Hire Employees <ArrowRight className="w-4 h-4 ml-1" /></Link>
+              <span className="bg-gradient-to-r from-primary via-primary-light to-accent bg-clip-text text-transparent italic drop-shadow-sm">Workforce Excellence</span>
+            </motion.h1>
+            
+            <motion.p 
+              initial={{ opacity: 0, transform: "translateY(10px)" }}
+              animate={{ opacity: 1, transform: "translateY(0px)" }}
+              transition={{ delay: 0.8, duration: 1 }}
+              className="text-lg md:text-xl text-foreground/60 mb-12 font-body max-w-3xl mx-auto leading-relaxed"
+            >
+              Empowering the industrial backbone of Tamil Nadu with specialized staffing and elite <span className="text-primary font-bold">HR management solutions</span>.
+            </motion.p>
+            
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1, duration: 0.8 }}
+              className="flex flex-wrap gap-5 justify-center"
+            >
+              <Button size="lg" asChild className="rounded-full px-10 h-16 bg-primary hover:bg-primary-dark text-primary-foreground text-lg font-bold shadow-[0_20px_50px_rgba(37,99,235,0.3)] transition-all hover:scale-105 active:scale-95 group relative overflow-hidden">
+                <Link to="/services">
+                  Our Expertise <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
+                  <div className="absolute inset-0 bg-white/20 -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+                </Link>
               </Button>
-              <Button size="lg" variant="hero-white" asChild className="rounded-full px-8 h-13">
-                <Link to="/careers">Submit Resume</Link>
+              <Button size="lg" variant="outline" asChild className="rounded-full px-10 h-16 backdrop-blur-xl border-border/10 bg-card/40 dark:border-white/10 hover:bg-card/60 text-lg font-bold transition-all hover:scale-105 active:scale-95 text-foreground dark:text-white shadow-sm">
+                <Link to="/contact">Partner With Us</Link>
               </Button>
-              <Button size="lg" variant="hero-outline" asChild className="rounded-full px-8 h-13">
-                <Link to="/contact">Contact Us</Link>
-              </Button>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
         
         {/* Scroll indicator */}
         <motion.div 
-          animate={{ y: [0, 8, 0] }} 
-          transition={{ repeat: Infinity, duration: 2 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+          animate={{ y: [0, 10, 0], opacity: [0.3, 1, 0.3] }} 
+          transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2"
         >
-          <div className="w-6 h-10 rounded-full border-2 border-primary-foreground/30 flex items-start justify-center p-1.5">
-            <div className="w-1.5 h-3 rounded-full bg-primary-foreground/50" />
-          </div>
+          <div className="w-[1px] h-16 bg-gradient-to-b from-primary/0 via-primary to-primary/0" />
         </motion.div>
       </section>
 
-      {/* About Short */}
-      <section className="section-padding section-gradient">
-        <div className="container-narrow mx-auto">
-          <motion.div variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="text-center max-w-3xl mx-auto">
-            <SectionHeading title="Who We Are" subtitle="Leading recruitment service provider in Tamil Nadu, delivering trained manpower and comprehensive HR solutions." />
-            <p className="text-muted-foreground leading-relaxed mb-10 text-lg">
-              PVRHR Solutions and Services Pvt Ltd is a leading HR services company providing customized recruitment, manpower supply, payroll management, and compliance solutions. We focus on building long-term partnerships with our clients while ensuring quality talent acquisition for manufacturing, automobile, and electronics industries.
-            </p>
-            <Button asChild className="rounded-full px-6">
-              <Link to="/about">Read More <ArrowRight className="w-4 h-4 ml-1" /></Link>
-            </Button>
-          </motion.div>
+      {/* Intro Section - Bento Grid Intro */}
+      <section className="section-padding relative overflow-hidden">
+        <div className="container-narrow mx-auto relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <motion.div 
+              variants={fadeInUp} 
+              initial="hidden" 
+              whileInView="visible" 
+              viewport={{ once: true }} 
+              className="lg:col-span-12 text-center"
+            >
+              <SectionHeading title="Pioneering Human Potential" subtitle="Strategic HR solutions for the modern industrial landscape." />
+              <p className="text-foreground/60 leading-relaxed mb-10 text-xl max-w-4xl mx-auto font-light">
+                PVRHR Solutions bridges the gap between industrial ambition and workforce capability. We don't just fill positions; we engineer growth through meticulous talent acquisition and management.
+              </p>
+            </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* Services */}
-      <section className="section-padding">
+      {/* Services - Bento Grid */}
+      <section className="section-padding bg-primary/5 dark:bg-black/20">
         <div className="container-narrow mx-auto">
-          <SectionHeading title="Our Services" subtitle="Comprehensive HR solutions tailored to your industry needs" />
-          <motion.div variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {services.map((service) => (
-              <motion.div key={service.title} variants={fadeInUp} className="card-modern p-7 group">
-                <div className="icon-badge mb-5 group-hover:scale-110 transition-transform duration-300">
-                  <service.icon className="w-6 h-6 text-primary" />
+          <SectionHeading title="Precision Services" subtitle="A multi-modal approach to industrial workforce management" />
+          
+          <motion.div 
+            variants={stagger} 
+            initial="hidden" 
+            whileInView="visible" 
+            viewport={{ once: true }} 
+            className="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 lg:gap-6"
+          >
+            {services.map((service, index) => (
+              <motion.div 
+                key={service.title} 
+                variants={fadeInUp} 
+                whileHover={{ y: -10, scale: 1.02 }}
+                className={`group relative overflow-hidden rounded-[2.5rem] p-10 border border-border/10 transition-all duration-700 hover:border-primary/40 hover:shadow-premium ${
+                  index === 0 ? "md:col-span-2 md:row-span-2 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent dark:from-primary/20" : 
+                  "bg-card/70 backdrop-blur-xl"
+                }`}
+              >
+                {/* Background Glow */}
+                <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-primary/5 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                
+                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-all duration-500 ${
+                  index === 0 ? "bg-primary text-primary-foreground shadow-2xl shadow-primary/40" : "bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground shadow-sm"
+                }`}>
+                  <service.icon className="w-7 h-7" />
                 </div>
-                <h3 className="font-heading font-bold text-lg mb-2 text-foreground">{service.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{service.desc}</p>
+                
+                <h3 className={`font-heading font-bold mb-3 transition-colors ${
+                  index === 0 ? "text-2xl md:text-3xl text-foreground dark:text-white" : "text-xl text-foreground/90 group-hover:text-primary dark:group-hover:text-white"
+                }`}>
+                  {service.title}
+                </h3>
+                
+                <p className={`leading-relaxed transition-colors ${
+                  index === 0 ? "text-lg text-foreground/70" : "text-[15px] text-foreground/50 group-hover:text-foreground/70"
+                }`}>
+                  {service.desc}
+                </p>
+
+                {index === 0 && (
+                  <div className="mt-8">
+                    <Button variant="link" className="text-primary p-0 h-auto font-bold group" asChild>
+                      <Link to="/services">Learn more <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" /></Link>
+                    </Button>
+                  </div>
+                )}
               </motion.div>
             ))}
           </motion.div>
@@ -139,91 +208,115 @@ const Index = () => {
       </section>
 
       {/* Stats */}
-      <section className="stat-gradient section-padding relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-1/4 w-64 h-64 bg-primary-foreground rounded-full blur-3xl" />
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-primary-foreground rounded-full blur-3xl" />
+      <section className="py-24 relative overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,hsla(var(--primary),0.06),transparent_70%)] dark:bg-[radial-gradient(circle_at_center,rgba(245,158,11,0.05),transparent_70%)]" />
         </div>
-        <div className="container-narrow mx-auto relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             {[
-              { end: 2300, suffix: "+", label: "Employees Deployed" },
-              { end: 9, suffix: "+", label: "Trusted Clients" },
-              { end: 5000, suffix: "+", label: "Total Hiring" },
+              { end: 2300, suffix: "+", label: "Talents Deployed", icon: UserCheck },
+              { end: 9, suffix: "+", label: "Strategic Partners", icon: Building2 },
+              { end: 5000, suffix: "+", label: "Successful Placements", icon: Sparkles },
             ].map((stat) => (
-              <div key={stat.label} className="space-y-3">
+              <motion.div 
+                key={stat.label} 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.05, y: -5 }}
+                transition={{ duration: 0.6 }}
+                className="p-10 rounded-[3rem] bg-card/70 border border-border/10 backdrop-blur-xl group hover:shadow-premium transition-all duration-500"
+              >
+                <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-6 text-primary group-hover:scale-110 transition-transform duration-500">
+                  <stat.icon className="w-8 h-8" />
+                </div>
                 <AnimatedCounter end={stat.end} suffix={stat.suffix} />
-                <p className="text-primary-foreground/70 font-heading font-medium text-lg">{stat.label}</p>
-              </div>
+                <p className="text-foreground/50 font-heading font-semibold text-lg uppercase tracking-widest mt-2">{stat.label}</p>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Clients */}
-      <section className="section-padding section-gradient">
+      {/* Testimonials - Premium Layout */}
+      <section className="section-padding relative">
         <div className="container-narrow mx-auto">
-          <SectionHeading title="Our Clients" subtitle="Trusted by leading manufacturing and industrial companies" />
-          <motion.div variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {clients.map((client) => (
-              <motion.div key={client} variants={fadeInUp} className="card-modern p-7 text-center group">
-                <div className="icon-badge mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                  <Building2 className="w-6 h-6 text-primary" />
-                </div>
-                <p className="font-heading font-semibold text-foreground">{client}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section className="section-padding">
-        <div className="container-narrow mx-auto">
-          <SectionHeading title="What Our Clients Say" subtitle="Trusted feedback from our valued partners" />
-          <motion.div variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {testimonials.map((t) => (
-              <motion.div key={t.name} variants={fadeInUp} className="card-modern p-7 relative">
-                <Quote className="w-10 h-10 text-primary/10 absolute top-5 right-5" />
-                <div className="flex items-center gap-4 mb-5">
-                  <div className="w-13 h-13 rounded-2xl bg-gradient-to-br from-primary/20 to-primary-glow/10 flex items-center justify-center">
-                    <span className="text-primary font-heading font-bold text-lg">{t.name[0]}</span>
+          <SectionHeading title="Industry Perspectives" subtitle="Voices of success from the leaders we serve" />
+          <motion.div 
+            variants={stagger} 
+            initial="hidden" 
+            whileInView="visible" 
+            viewport={{ once: true }} 
+            className="grid grid-cols-1 lg:grid-cols-3 gap-8"
+          >
+            {testimonials.map((t, i) => (
+              <motion.div 
+                key={t.name} 
+                variants={fadeInUp} 
+                whileHover={{ y: -12 }}
+                className="relative p-12 rounded-[3.5rem] bg-card/70 border border-border/10 group hover:shadow-premium transition-all duration-700"
+              >
+                <Quote className="w-20 h-20 text-primary opacity-[0.03] absolute top-8 right-8 transition-opacity group-hover:opacity-[0.08]" />
+                
+                <div className="flex items-center gap-5 mb-8">
+                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-primary-dark p-[1px]">
+                    <div className="w-full h-full rounded-2xl bg-background flex items-center justify-center">
+                      <span className="text-primary font-heading font-bold text-xl">{t.name[0]}</span>
+                    </div>
                   </div>
                   <div>
-                    <p className="font-heading font-bold text-foreground">{t.name}</p>
-                    <p className="text-sm text-muted-foreground">{t.role}</p>
+                    <h4 className="font-heading font-bold text-lg text-foreground dark:text-white">{t.name}</h4>
+                    <p className="text-sm text-primary/70 font-semibold uppercase tracking-tighter">{t.role}</p>
                   </div>
                 </div>
-                <div className="flex gap-0.5 mb-4">
+
+                <div className="flex gap-1 mb-6">
                   {Array.from({ length: 5 }).map((_, i) => (
-                    <Star key={i} className={`w-4 h-4 ${i < t.rating ? "text-accent fill-accent" : "text-muted"}`} />
+                    <Star key={i} className={`w-4 h-4 ${i < t.rating ? "text-primary fill-primary" : "text-white/10"}`} />
                   ))}
                 </div>
-                <p className="text-muted-foreground text-[15px] leading-relaxed italic">"{t.review}"</p>
+
+                <p className="text-foreground/70 text-lg leading-relaxed font-light italic relative">
+                  "{t.review}"
+                </p>
               </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="hero-gradient section-padding relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-primary-foreground rounded-full blur-3xl" />
+      {/* CTA - Cinematic */}
+      <section className="py-32 relative overflow-hidden">
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+        <div className="absolute inset-0 z-0">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,hsla(var(--primary),0.1),transparent_70%)] dark:bg-[radial-gradient(circle_at_center,rgba(245,158,11,0.08),transparent_70%)] opacity-50" />
         </div>
-        <div className="container-narrow mx-auto text-center relative z-10">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <h2 className="text-3xl md:text-5xl font-heading font-extrabold text-primary-foreground mb-5 leading-tight">
-              Looking for Skilled Manpower?
+        <div className="container-narrow mx-auto text-center relative z-10 px-6">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }} 
+            whileInView={{ opacity: 1, scale: 1 }} 
+            viewport={{ once: true }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <h2 className="text-4xl md:text-6xl font-heading font-extrabold text-foreground dark:text-white mb-8 leading-[1.1]">
+              Ready to Engineer Your <br />
+              <span className="text-primary">Perfect Workforce?</span>
             </h2>
-            <p className="text-primary-foreground/70 text-lg mb-10 max-w-xl mx-auto leading-relaxed">
-              Get reliable recruitment services today. We provide trained workforce for your industry needs.
+            <p className="text-foreground/50 text-xl mb-12 max-w-2xl mx-auto font-light leading-relaxed">
+              Join the elite circle of industries powered by PVRHR precision. Let's discuss your strategic staffing requirements today.
             </p>
-            <Button size="lg" variant="hero" asChild className="rounded-full px-8 h-13">
-              <Link to="/contact">Get Started <ArrowRight className="w-4 h-4 ml-1" /></Link>
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              <Button size="lg" asChild className="rounded-full px-12 h-16 bg-primary hover:bg-primary-dark text-primary-foreground text-xl font-bold shadow-[0_0_40px_rgba(245,158,11,0.3)] transition-all hover:scale-105 active:scale-95">
+                <Link to="/contact">Claim Your Consultation</Link>
+              </Button>
+              <Button size="lg" variant="outline" asChild className="rounded-full px-12 h-16 bg-card/60 border-border/10 text-xl font-semibold backdrop-blur-xl transition-all hover:bg-card/80 hover:scale-105 active:scale-95 text-foreground dark:text-white">
+                <Link to="/about">Our Philosophy</Link>
+              </Button>
+            </div>
           </motion.div>
         </div>
+        <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
       </section>
     </div>
   );

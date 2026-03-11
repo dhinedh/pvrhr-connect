@@ -20,41 +20,67 @@ const fadeInUp = {
 
 const Services = () => {
   return (
-    <div className="min-h-screen pt-20">
-      <section className="hero-gradient section-padding relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-primary-foreground rounded-full blur-3xl" />
+    <div className="min-h-screen bg-background text-foreground selection:bg-primary/30 selection:text-primary">
+      {/* Cinematic Header */}
+      <section className="relative min-h-[50vh] pt-32 flex items-center justify-center overflow-hidden">
+        {/* Background Effects */}
+        <div className="absolute inset-0 z-0 bg-[var(--hero-bg-light)]">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,hsla(var(--primary),0.12),transparent_50%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,hsla(var(--primary),0.05),transparent_40%)]" />
+          <div className="absolute inset-0 bg-background/40 dark:bg-background/60 backdrop-blur-[1px]" />
         </div>
-        <div className="container-narrow mx-auto text-center relative z-10">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-extrabold text-primary-foreground mb-5">Our Services</h1>
-            <p className="text-primary-foreground/70 text-lg max-w-2xl mx-auto leading-relaxed">
-              Comprehensive HR solutions tailored to your industry needs
+
+        <div className="relative z-10 container-narrow mx-auto px-6 text-center">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, filter: "blur(15px)" }}
+            animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <h1 className="text-5xl md:text-7xl font-heading font-extrabold mb-6 leading-[1.1] tracking-tight text-foreground dark:text-white">
+              Industrial <br />
+              <span className="bg-gradient-to-r from-primary via-primary-light to-accent bg-clip-text text-transparent italic">Operational Excellence</span>
+            </h1>
+            <p className="text-xl md:text-2xl text-foreground/60 max-w-3xl mx-auto font-light leading-relaxed">
+              Precision HR frameworks designed for the rigorous demands of modern manufacturing and technology.
             </p>
           </motion.div>
         </div>
       </section>
 
-      <section className="section-padding">
+      {/* Services Grid */}
+      <section className="section-padding relative">
         <div className="container-narrow mx-auto">
-          <div className="space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
             {services.map((service, i) => (
               <motion.div
                 key={service.title}
-                variants={fadeInUp}
-                initial="hidden"
-                whileInView="visible"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className={`flex flex-col md:flex-row items-start gap-8 card-modern p-8 md:p-10 group ${
-                  i % 2 === 1 ? "md:flex-row-reverse" : ""
-                }`}
+                transition={{ duration: 0.6, delay: i * 0.05 }}
+                whileHover={{ y: -12 }}
+                className="group relative p-12 rounded-[3.5rem] bg-card/70 border border-border/10 overflow-hidden hover:shadow-premium transition-all duration-700 shadow-sm"
               >
-                <div className="icon-badge shrink-0 group-hover:scale-110 transition-transform duration-300">
-                  <service.icon className="w-7 h-7 text-primary" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-heading font-extrabold text-foreground mb-3">{service.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">{service.desc}</p>
+                {/* Background Glow */}
+                <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-primary/5 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                
+                <motion.div 
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-8 text-primary shadow-2xl group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-500"
+                >
+                  <service.icon className="w-7 h-7" />
+                </motion.div>
+                
+                <h3 className="text-2xl font-heading font-bold text-foreground dark:text-white mb-4 group-hover:text-primary transition-colors">
+                  {service.title}
+                </h3>
+                
+                <p className="text-foreground/50 text-lg leading-relaxed font-light">
+                  {service.desc}
+                </p>
+
+                <div className="mt-8 flex items-center text-primary font-bold text-sm tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0">
+                  Detailed Scope <ArrowRight className="w-4 h-4 ml-2" />
                 </div>
               </motion.div>
             ))}
