@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Users, Building2, ClipboardCheck, DollarSign, Shield, GraduationCap, Factory, UserCheck } from "lucide-react";
+import { Users, Building2, ClipboardCheck, DollarSign, Shield, GraduationCap, Factory, UserCheck, ArrowRight } from "lucide-react";
 import SectionHeading from "@/components/SectionHeading";
 
 const services = [
@@ -15,17 +15,20 @@ const services = [
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] } },
 };
 
 const Services = () => {
   return (
     <div className="min-h-screen pt-20">
-      <section className="hero-gradient section-padding">
-        <div className="container-narrow mx-auto text-center">
+      <section className="hero-gradient section-padding relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-primary-foreground rounded-full blur-3xl" />
+        </div>
+        <div className="container-narrow mx-auto text-center relative z-10">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-            <h1 className="text-4xl md:text-5xl font-heading font-bold text-primary-foreground mb-4">Our Services</h1>
-            <p className="text-primary-foreground/80 text-lg max-w-2xl mx-auto">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-extrabold text-primary-foreground mb-5">Our Services</h1>
+            <p className="text-primary-foreground/70 text-lg max-w-2xl mx-auto leading-relaxed">
               Comprehensive HR solutions tailored to your industry needs
             </p>
           </motion.div>
@@ -34,7 +37,7 @@ const Services = () => {
 
       <section className="section-padding">
         <div className="container-narrow mx-auto">
-          <div className="space-y-8">
+          <div className="space-y-6">
             {services.map((service, i) => (
               <motion.div
                 key={service.title}
@@ -42,15 +45,15 @@ const Services = () => {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className={`flex flex-col md:flex-row gap-6 bg-card rounded-lg p-8 card-elevated border border-border ${
+                className={`flex flex-col md:flex-row items-start gap-8 card-modern p-8 md:p-10 group ${
                   i % 2 === 1 ? "md:flex-row-reverse" : ""
                 }`}
               >
-                <div className="w-16 h-16 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                  <service.icon className="w-8 h-8 text-primary" />
+                <div className="icon-badge shrink-0 group-hover:scale-110 transition-transform duration-300">
+                  <service.icon className="w-7 h-7 text-primary" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-heading font-bold text-foreground mb-2">{service.title}</h3>
+                  <h3 className="text-xl font-heading font-extrabold text-foreground mb-3">{service.title}</h3>
                   <p className="text-muted-foreground leading-relaxed">{service.desc}</p>
                 </div>
               </motion.div>
