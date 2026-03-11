@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Users, Building2, ClipboardCheck, DollarSign, Shield, GraduationCap, Factory, UserCheck, ArrowRight } from "lucide-react";
 import SectionHeading from "@/components/SectionHeading";
+import SpotlightCard from "@/components/SpotlightCard";
 
 const services = [
   { icon: UserCheck, title: "Recruitment Services", desc: "We specialize in finding the right candidates for your company through comprehensive screening, skill assessments, and background verification. Our recruitment team works closely with you to understand job requirements and deliver the best-fit talent." },
@@ -25,22 +26,23 @@ const Services = () => {
       <section className="relative min-h-[50vh] pt-32 flex items-center justify-center overflow-hidden">
         {/* Background Effects */}
         <div className="absolute inset-0 z-0 bg-[var(--hero-bg-light)]">
+          <div className="absolute inset-0 animate-liquid opacity-20" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,hsla(var(--primary),0.12),transparent_50%)]" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,hsla(var(--primary),0.05),transparent_40%)]" />
-          <div className="absolute inset-0 bg-background/40 dark:bg-background/60 backdrop-blur-[1px]" />
+          <div className="absolute inset-0 bg-background/20 dark:bg-background/60 backdrop-blur-[2px]" />
         </div>
 
         <div className="relative z-10 container-narrow mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.95, filter: "blur(15px)" }}
             animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           >
-            <h1 className="text-5xl md:text-7xl font-heading font-extrabold mb-6 leading-[1.1] tracking-tight text-foreground dark:text-white">
+            <h1 className="text-5xl md:text-7xl font-heading font-extrabold mb-6 leading-[1.1] tracking-tight text-foreground dark:text-white text-balance">
               Industrial <br />
-              <span className="bg-gradient-to-r from-primary via-primary-light to-accent bg-clip-text text-transparent italic">Operational Excellence</span>
+              <span className="bg-gradient-to-r from-primary via-primary-light to-accent bg-clip-text text-transparent italic drop-shadow-sm">Operational Excellence</span>
             </h1>
-            <p className="text-xl md:text-2xl text-foreground/60 max-w-3xl mx-auto font-light leading-relaxed">
+            <p className="text-xl md:text-2xl text-foreground/60 max-w-3xl mx-auto font-light leading-relaxed text-balance">
               Precision HR frameworks designed for the rigorous demands of modern manufacturing and technology.
             </p>
           </motion.div>
@@ -52,24 +54,21 @@ const Services = () => {
         <div className="container-narrow mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
             {services.map((service, i) => (
-              <motion.div
+              <SpotlightCard
                 key={service.title}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.05 }}
-                whileHover={{ y: -12 }}
-                className="group relative p-12 rounded-[3.5rem] bg-card/70 border border-border/10 overflow-hidden hover:shadow-premium transition-all duration-700 shadow-sm"
+                tiltEffect={true}
+                className="group relative p-12 rounded-[3.5rem] bg-card/70 border border-border/10 overflow-hidden transition-all duration-700 shadow-sm"
               >
                 {/* Background Glow */}
                 <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-primary/5 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity" />
                 
-                <motion.div 
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                  className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-8 text-primary shadow-2xl group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-500"
-                >
+                <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-8 text-primary shadow-2xl group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-500">
                   <service.icon className="w-7 h-7" />
-                </motion.div>
+                </div>
                 
                 <h3 className="text-2xl font-heading font-bold text-foreground dark:text-white mb-4 group-hover:text-primary transition-colors">
                   {service.title}
@@ -82,7 +81,7 @@ const Services = () => {
                 <div className="mt-8 flex items-center text-primary font-bold text-sm tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0">
                   Detailed Scope <ArrowRight className="w-4 h-4 ml-2" />
                 </div>
-              </motion.div>
+              </SpotlightCard>
             ))}
           </div>
         </div>

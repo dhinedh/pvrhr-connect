@@ -223,46 +223,47 @@
 }
 
 @keyframes pulse-glow {
-  0%, 100% { opacity: 0.5; filter: blur(80px);   /* Luxury UI Utilities */
-  .spotlight-card {
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .spotlight-card::before {
-    content: "";
-    position: absolute;
-    inset: -1px;
-    background: radial-gradient(
-      600px circle at var(--mouse-x) var(--mouse-y),
-      hsla(var(--primary), 0.4),
-      transparent 40%
-    );
-    z-index: 0;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.5s;
-  }
-  
-  .spotlight-card:hover::before {
-    opacity: 1;
-  }
-
-  .text-balance {
-    text-wrap: balance;
-  }
-
-  @keyframes liquid-sheen {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-
-  .animate-liquid {
-    background: linear-gradient(-45deg, hsla(var(--primary), 0.1), hsla(var(--accent), 0.1), hsla(var(--primary-light), 0.1), hsla(var(--white), 0.1));
-    background-size: 400% 400%;
-    animation: liquid-sheen 15s ease infinite;
-  }
-}
+  0%, 100% { opacity: 0.5; filter: blur(80px); }
   50% { opacity: 0.8; filter: blur(100px); }
+}
+
+/* Luxury UI Utilities */
+.spotlight-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.spotlight-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  background: radial-gradient(
+    600px circle at var(--mouse-x) var(--mouse-y),
+    hsla(var(--primary), 0.4),
+    transparent 40%
+  );
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.spotlight-card:hover::before {
+  opacity: 1;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+@keyframes liquid-sheen {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-liquid {
+  background: linear-gradient(-45deg, hsla(var(--primary), 0.1), hsla(var(--accent), 0.1), hsla(var(--primary-light), 0.1), hsla(var(--white), 0.1));
+  background-size: 400% 400%;
+  animation: liquid-sheen 15s ease infinite;
 }

@@ -41,6 +41,8 @@ const stagger = {
   visible: { transition: { staggerChildren: 0.12 } },
 };
 
+import SpotlightCard from "@/components/SpotlightCard";
+
 const Index = () => {
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-primary/30 selection:text-primary">
@@ -48,58 +50,66 @@ const Index = () => {
       <section className="relative min-h-[95vh] pt-32 flex items-center justify-center overflow-hidden">
         {/* Advanced Background */}
         <div className="absolute inset-0 z-0 bg-[var(--hero-bg-light)]">
-          <img src={heroBg} alt="" className="w-full h-full object-cover opacity-[0.15] dark:opacity-40 scale-110" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,hsla(var(--primary),0.1),transparent_50%)] dark:bg-[radial-gradient(circle_at_top_right,rgba(245,158,11,0.08),transparent_50%)]" />
+          <img src={heroBg} alt="" className="w-full h-full object-cover opacity-[0.1] dark:opacity-40 scale-110" />
+          <div className="absolute inset-0 animate-liquid opacity-20" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,hsla(var(--primary),0.08),transparent_50%)] dark:bg-[radial-gradient(circle_at_top_right,rgba(245,158,11,0.08),transparent_50%)]" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,hsla(var(--primary),0.05),transparent_40%)]" />
-          <div className="absolute inset-0 bg-background/40 dark:bg-background/60 backdrop-blur-[1px]" />
+          <div className="absolute inset-0 bg-background/20 dark:bg-background/60 backdrop-blur-[1px]" />
         </div>
 
         {/* Floating elements */}
-        <motion.div 
-          animate={{ x: [0, 50, 0], y: [0, -50, 0], scale: [1, 1.1, 1] }}
-          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px] mix-blend-multiply dark:mix-blend-soft-light" 
-        />
-        <motion.div 
-          animate={{ x: [0, -60, 0], y: [0, 60, 0], scale: [1, 1.2, 1] }}
-          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-1/4 left-1/4 w-[600px] h-[600px] bg-accent/10 rounded-full blur-[150px] mix-blend-multiply dark:mix-blend-soft-light" 
-        />
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+          <motion.div 
+            animate={{ 
+              y: [0, -20, 0],
+              opacity: [0.3, 0.6, 0.3],
+            }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute top-1/4 -right-20 w-[40rem] h-[40rem] bg-primary/10 rounded-full blur-[120px]"
+          />
+          <motion.div 
+            animate={{ 
+              y: [0, 20, 0],
+              opacity: [0.2, 0.4, 0.2],
+            }}
+            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+            className="absolute -bottom-20 -left-20 w-[35rem] h-[35rem] bg-accent/5 rounded-full blur-[100px]"
+          />
+        </div>
 
         <div className="relative z-10 container-narrow mx-auto px-6 text-center">
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            initial={{ opacity: 0, scale: 0.9, filter: "blur(20px)" }}
+            animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           >
             <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
               className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-card/40 backdrop-blur-xl border border-border/10 mb-8 shadow-2xl"
             >
               <Sparkles className="w-4 h-4 text-primary animate-pulse" />
-              <span className="text-[13px] font-semibold tracking-wide text-foreground uppercase">The Gold Standard in HR</span>
+              <span className="text-[13px] font-semibold tracking-[0.2em] text-foreground uppercase">Industrial Excellence Defined</span>
             </motion.div>
             
             <motion.h1 
               initial={{ opacity: 0, scale: 0.9, filter: "blur(20px)" }}
               animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
               transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-              className="text-5xl md:text-7xl lg:text-8xl font-heading font-extrabold mb-6 leading-[1] tracking-tight text-foreground dark:text-white"
+              className="text-5xl md:text-7xl lg:text-8xl font-heading font-extrabold mb-6 leading-[1] tracking-tight text-foreground dark:text-white text-balance"
             >
-              Precision Talent
-              <br />
-              <span className="bg-gradient-to-r from-primary via-primary-light to-accent bg-clip-text text-transparent italic drop-shadow-sm">Workforce Excellence</span>
+              Architecting the <br />
+              <span className="bg-gradient-to-r from-primary via-primary-light to-accent bg-clip-text text-transparent italic drop-shadow-sm">Industrial Future</span>
             </motion.h1>
             
             <motion.p 
               initial={{ opacity: 0, transform: "translateY(10px)" }}
               animate={{ opacity: 1, transform: "translateY(0px)" }}
               transition={{ delay: 0.8, duration: 1 }}
-              className="text-lg md:text-xl text-foreground/60 mb-12 font-body max-w-3xl mx-auto leading-relaxed"
+              className="text-lg md:text-xl text-foreground/60 mb-12 font-body max-w-3xl mx-auto leading-relaxed text-balance"
             >
-              Empowering the industrial backbone of Tamil Nadu with specialized staffing and elite <span className="text-primary font-bold">HR management solutions</span>.
+              PVRHR Connect: Engineering the bridge between professional ambition and enterprise-grade industrial performance.
             </motion.p>
             
             <motion.div 
@@ -164,11 +174,11 @@ const Index = () => {
             className="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 lg:gap-6"
           >
             {services.map((service, index) => (
-              <motion.div 
+              <SpotlightCard 
                 key={service.title} 
                 variants={fadeInUp} 
-                whileHover={{ y: -10, scale: 1.02 }}
-                className={`group relative overflow-hidden rounded-[2.5rem] p-10 border border-border/10 transition-all duration-700 hover:border-primary/40 hover:shadow-premium ${
+                tiltEffect={index === 0}
+                className={`group relative overflow-hidden rounded-[2.5rem] p-10 border border-border/10 transition-all duration-700 hover:border-primary/40 ${
                   index === 0 ? "md:col-span-2 md:row-span-2 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent dark:from-primary/20" : 
                   "bg-card/70 backdrop-blur-xl"
                 }`}
@@ -201,7 +211,7 @@ const Index = () => {
                     </Button>
                   </div>
                 )}
-              </motion.div>
+              </SpotlightCard>
             ))}
           </motion.div>
         </div>
@@ -214,26 +224,32 @@ const Index = () => {
         </div>
         <div className="container mx-auto px-6 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+            {/* Stats */}
+            {/* Stats */}
+            {/* Stats Cards */}
+            {/* Stats Cards */}
+            {/* Stats Cards */}
+            {/* Stats Cards */}
+            {/* Stats Cards */}
             {[
               { end: 2300, suffix: "+", label: "Talents Deployed", icon: UserCheck },
               { end: 9, suffix: "+", label: "Strategic Partners", icon: Building2 },
               { end: 5000, suffix: "+", label: "Successful Placements", icon: Sparkles },
             ].map((stat) => (
-              <motion.div 
+              <SpotlightCard 
                 key={stat.label} 
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                whileHover={{ scale: 1.05, y: -5 }}
-                transition={{ duration: 0.6 }}
-                className="p-10 rounded-[3rem] bg-card/70 border border-border/10 backdrop-blur-xl group hover:shadow-premium transition-all duration-500"
+                tiltEffect={true}
+                className="p-10 rounded-[3rem] bg-card/70 border border-border/10 backdrop-blur-xl group transition-all duration-500"
               >
-                <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-6 text-primary group-hover:scale-110 transition-transform duration-500">
+                <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-6 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-500 shadow-2xl">
                   <stat.icon className="w-8 h-8" />
                 </div>
                 <AnimatedCounter end={stat.end} suffix={stat.suffix} />
                 <p className="text-foreground/50 font-heading font-semibold text-lg uppercase tracking-widest mt-2">{stat.label}</p>
-              </motion.div>
+              </SpotlightCard>
             ))}
           </div>
         </div>
@@ -251,23 +267,23 @@ const Index = () => {
             className="grid grid-cols-1 lg:grid-cols-3 gap-8"
           >
             {testimonials.map((t, i) => (
-              <motion.div 
+              <SpotlightCard 
                 key={t.name} 
                 variants={fadeInUp} 
-                whileHover={{ y: -12 }}
-                className="relative p-12 rounded-[3.5rem] bg-card/70 border border-border/10 group hover:shadow-premium transition-all duration-700"
+                tiltEffect={true}
+                className="relative p-12 rounded-[3.5rem] bg-card/70 border border-border/10 group transition-all duration-700"
               >
-                <Quote className="w-20 h-20 text-primary opacity-[0.03] absolute top-8 right-8 transition-opacity group-hover:opacity-[0.08]" />
+                <Quote className="w-20 h-20 text-primary opacity-[0.03] absolute top-8 right-8 transition-opacity group-hover:opacity-[0.1]" />
                 
                 <div className="flex items-center gap-5 mb-8">
                   <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-primary-dark p-[1px]">
-                    <div className="w-full h-full rounded-2xl bg-background flex items-center justify-center">
+                    <div className="w-full h-full rounded-2xl bg-background flex items-center justify-center shadow-inner">
                       <span className="text-primary font-heading font-bold text-xl">{t.name[0]}</span>
                     </div>
                   </div>
                   <div>
-                    <h4 className="font-heading font-bold text-lg text-foreground dark:text-white">{t.name}</h4>
-                    <p className="text-sm text-primary/70 font-semibold uppercase tracking-tighter">{t.role}</p>
+                    <h4 className="font-heading font-bold text-lg text-foreground dark:text-white group-hover:text-primary transition-colors">{t.name}</h4>
+                    <p className="text-sm text-primary/70 font-black uppercase tracking-widest">{t.role}</p>
                   </div>
                 </div>
 
@@ -280,7 +296,7 @@ const Index = () => {
                 <p className="text-foreground/70 text-lg leading-relaxed font-light italic relative">
                   "{t.review}"
                 </p>
-              </motion.div>
+              </SpotlightCard>
             ))}
           </motion.div>
         </div>

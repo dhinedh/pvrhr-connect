@@ -23,26 +23,27 @@ const Clients = () => {
       <section className="relative min-h-[45vh] pt-32 flex items-center justify-center overflow-hidden">
         {/* Background Effects */}
         <div className="absolute inset-0 z-0 bg-[var(--hero-bg-light)]">
+          <div className="absolute inset-0 animate-liquid opacity-20" />
           <motion.div 
-            animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.15, 0.1] }}
-            transition={{ duration: 12, repeat: Infinity }}
+            animate={{ scale: [1, 1.1, 1], opacity: [0.1, 0.15, 0.1] }}
+            transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
             className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,hsla(var(--primary),0.15),transparent_50%)]" 
           />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,hsla(var(--primary),0.05),transparent_40%)]" />
-          <div className="absolute inset-0 bg-background/40 dark:bg-background/60 backdrop-blur-[1px]" />
+          <div className="absolute inset-0 bg-background/20 dark:bg-background/60 backdrop-blur-[2px]" />
         </div>
 
         <div className="relative z-10 container-narrow mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.95, filter: "blur(15px)" }}
             animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           >
-            <h1 className="text-5xl md:text-7xl font-heading font-extrabold mb-6 leading-[1.1] tracking-tight text-foreground dark:text-white">
+            <h1 className="text-5xl md:text-7xl font-heading font-extrabold mb-6 leading-[1.1] tracking-tight text-foreground dark:text-white text-balance">
               Strategic <br />
-              <span className="bg-gradient-to-r from-primary via-primary-light to-accent bg-clip-text text-transparent italic">Client Alliances</span>
+              <span className="bg-gradient-to-r from-primary via-primary-light to-accent bg-clip-text text-transparent italic drop-shadow-sm">Client Alliances</span>
             </h1>
-            <p className="text-xl md:text-2xl text-foreground/60 max-w-3xl mx-auto font-light leading-relaxed">
+            <p className="text-xl md:text-2xl text-foreground/60 max-w-3xl mx-auto font-light leading-relaxed text-balance">
               We empower Tamil Nadu's industrial titans with the workforce backbone they demand.
             </p>
           </motion.div>

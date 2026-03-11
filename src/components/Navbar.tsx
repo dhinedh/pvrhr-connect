@@ -29,15 +29,19 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-700 w-[95%] max-w-7xl rounded-full border border-glass-border ${
+    <nav className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-700 w-[95%] max-w-7xl rounded-full border border-white/10 ${
       scrolled 
-        ? "bg-glass-bg backdrop-blur-2xl shadow-premium py-2" 
-        : "bg-glass-bg/50 backdrop-blur-md py-4"
+        ? "bg-white/50 dark:bg-black/50 backdrop-blur-3xl shadow-premium py-2" 
+        : "bg-white/30 dark:bg-black/20 backdrop-blur-xl py-4"
     }`}>
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between h-14">
           <Link to="/" className="flex items-center gap-2 group">
-            <img src={logo} alt="PVRHR Solutions" className="h-8 md:h-10 w-auto transition-all duration-500 group-hover:brightness-125" />
+            <motion.img 
+              whileHover={{ scale: 1.05 }}
+              src={logo} alt="PVRHR Solutions" 
+              className="h-8 md:h-10 w-auto transition-all duration-500 group-hover:brightness-125" 
+            />
           </Link>
 
           {/* Desktop Nav */}
@@ -46,14 +50,15 @@ const Navbar = () => {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`px-4 py-2 rounded-full text-[13px] font-bold font-heading transition-all duration-500 relative group overflow-hidden ${
+                className={`px-4 py-2 rounded-full text-[13px] font-bold font-heading transition-all duration-500 relative group ${
                   location.pathname === link.path
                     ? "text-primary"
-                    : "text-foreground/60 hover:text-foreground dark:hover:text-white"
+                    : "text-foreground/42 hover:text-foreground dark:hover:text-white"
                 }`}
               >
                 <motion.span 
-                  whileHover={{ y: -2 }}
+                  whileHover={{ y: -1, scale: 1.05 }}
+                  whileTap={{ y: 0, scale: 0.95 }}
                   className="relative z-10 block"
                 >
                   {link.label}
@@ -61,11 +66,11 @@ const Navbar = () => {
                 {location.pathname === link.path && (
                   <motion.div 
                     layoutId="active-nav"
-                    className="absolute inset-0 bg-primary/10 rounded-full"
-                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                    className="absolute inset-0 bg-primary/5 dark:bg-primary/10 rounded-full border border-primary/20"
+                    transition={{ type: "spring", bounce: 0.3, duration: 0.6 }}
                   />
                 )}
-                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-primary/50 transition-all duration-300 group-hover:w-1/2" />
+                <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-primary/40 rounded-full transition-all duration-300 group-hover:w-1/3" />
               </Link>
             ))}
           </div>

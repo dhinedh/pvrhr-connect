@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import SectionHeading from "@/components/SectionHeading";
 import { Target, Eye, CheckCircle } from "lucide-react";
+import SpotlightCard from "@/components/SpotlightCard";
 
 const timeline = [
   { year: "2017", title: "Started as PVR Enterprises", desc: "Began providing HR services to local industries." },
@@ -20,26 +21,27 @@ const About = () => {
       <section className="relative min-h-[60vh] pt-32 flex items-center justify-center overflow-hidden">
         {/* Background Effects */}
         <div className="absolute inset-0 z-0 bg-[var(--hero-bg-light)]">
+          <div className="absolute inset-0 animate-liquid opacity-20" />
           <motion.div 
-            animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.15, 0.1] }}
-            transition={{ duration: 10, repeat: Infinity }}
+            animate={{ scale: [1, 1.1, 1], opacity: [0.08, 0.12, 0.08] }}
+            transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
             className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,hsla(var(--primary),0.12),transparent_50%)]" 
           />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,hsla(var(--primary),0.05),transparent_40%)]" />
-          <div className="absolute inset-0 bg-background/40 dark:bg-background/60 backdrop-blur-[1px]" />
+          <div className="absolute inset-0 bg-background/20 dark:bg-background/60 backdrop-blur-[2px]" />
         </div>
 
         <div className="relative z-10 container-narrow mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.95, filter: "blur(15px)" }}
             animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           >
-            <h1 className="text-5xl md:text-7xl font-heading font-extrabold mb-6 leading-[1.1] tracking-tight text-foreground dark:text-white">
+            <h1 className="text-5xl md:text-7xl font-heading font-extrabold mb-6 leading-[1.1] tracking-tight text-foreground dark:text-white text-balance">
               The Architecture of <br />
-              <span className="bg-gradient-to-r from-primary via-primary-light to-accent bg-clip-text text-transparent italic">Industry Potential</span>
+              <span className="bg-gradient-to-r from-primary via-primary-light to-accent bg-clip-text text-transparent italic drop-shadow-sm">Industry Potential</span>
             </h1>
-            <p className="text-xl md:text-2xl text-foreground/60 max-w-3xl mx-auto font-light leading-relaxed">
+            <p className="text-xl md:text-2xl text-foreground/60 max-w-3xl mx-auto font-light leading-relaxed text-balance">
               We bridge the gap between industrial ambition and workforce capability with precision and dedication.
             </p>
           </motion.div>
@@ -58,7 +60,7 @@ const About = () => {
               className="lg:col-span-12 text-center"
             >
               <SectionHeading title="Precision Heritage" subtitle="Our journey from local service to industrial leader" />
-              <div className="space-y-8 text-foreground/60 leading-relaxed text-xl max-w-4xl mx-auto font-light">
+              <div className="space-y-8 text-foreground/60 leading-relaxed text-xl max-w-4xl mx-auto font-light text-balance">
                 <p>
                   PVRHR Solutions and Services Pvt Ltd represents the pinnacle of professional recruitment and HR administration in Thiruvallur. We serve as the strategic labor backbone for Tamil Nadu's heavyweights in manufacturing and electronics.
                 </p>
@@ -113,34 +115,34 @@ const About = () => {
       <section className="section-padding relative">
         <div className="container-narrow mx-auto relative z-10">
           <div className="grid md:grid-cols-2 gap-12">
-            <motion.div 
+            <SpotlightCard 
               variants={fadeInUp} 
               initial="hidden" 
               whileInView="visible" 
               viewport={{ once: true }} 
-              whileHover={{ y: -8 }}
-              className="relative p-12 rounded-[3.5rem] bg-card/70 border border-border/10 overflow-hidden group hover:shadow-premium transition-all duration-700"
+              tiltEffect={true}
+              className="relative p-12 rounded-[3.5rem] bg-card/70 border border-border/10 overflow-hidden group transition-all duration-700"
             >
               <div className="absolute -top-10 -right-10 w-40 h-40 bg-primary/5 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity" />
-              <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-8 text-primary shadow-2xl group-hover:scale-110 transition-transform">
+              <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-8 text-primary shadow-2xl group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-500">
                 <Eye className="w-8 h-8" />
               </div>
               <h3 className="text-3xl font-heading font-extrabold text-foreground dark:text-white mb-6">Our Vision</h3>
               <p className="text-foreground/50 leading-relaxed text-xl font-light italic">
                 "To remain the most trusted architect of workforce solutions in India, defining the new gold standard for industrial reliability and quality."
               </p>
-            </motion.div>
+            </SpotlightCard>
 
-            <motion.div 
+            <SpotlightCard 
               variants={fadeInUp} 
               initial="hidden" 
               whileInView="visible" 
               viewport={{ once: true }} 
-              whileHover={{ y: -8 }}
-              className="relative p-12 rounded-[3.5rem] bg-card/70 border border-border/10 overflow-hidden group hover:shadow-premium transition-all duration-700"
+              tiltEffect={true}
+              className="relative p-12 rounded-[3.5rem] bg-card/70 border border-border/10 overflow-hidden group transition-all duration-700"
             >
               <div className="absolute -top-10 -left-10 w-40 h-40 bg-accent/5 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity" />
-              <div className="w-16 h-16 rounded-2xl bg-accent/10 flex items-center justify-center mb-8 text-accent shadow-2xl group-hover:scale-110 transition-transform">
+              <div className="w-16 h-16 rounded-2xl bg-accent/10 flex items-center justify-center mb-8 text-accent shadow-2xl group-hover:bg-accent group-hover:text-accent-foreground transition-all duration-500">
                 <Target className="w-8 h-8" />
               </div>
               <h3 className="text-3xl font-heading font-extrabold text-foreground dark:text-white mb-6">Strategic Mission</h3>
@@ -156,7 +158,7 @@ const About = () => {
                   </li>
                 ))}
               </ul>
-            </motion.div>
+            </SpotlightCard>
           </div>
         </div>
       </section>
