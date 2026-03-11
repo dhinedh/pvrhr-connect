@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Users, Building2, ClipboardCheck, DollarSign, Shield, GraduationCap, Factory, UserCheck, ArrowRight } from "lucide-react";
+import { Users, Building2, ClipboardCheck, DollarSign, Shield, GraduationCap, Factory, UserCheck, ArrowRight, Quote, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SectionHeading from "@/components/SectionHeading";
 import AnimatedCounter from "@/components/AnimatedCounter";
@@ -24,6 +24,12 @@ const clients = [
   "Jangone Foam Products India Pvt Ltd",
   "Duckwoo Auto Parts India Pvt Ltd",
   "GH India Auto Parts India Pvt Ltd",
+];
+
+const testimonials = [
+  { name: "Rajesh Kumar", role: "HR Manager, Avary Tech", rating: 5, review: "PVRHR has been instrumental in providing skilled manpower for our electronics manufacturing unit. Their recruitment process is efficient and reliable." },
+  { name: "Sundar Rajan", role: "Operations Head, Steel Strips Wheels", rating: 5, review: "We've partnered with PVRHR for over two years. Their understanding of automobile industry staffing needs is exceptional." },
+  { name: "Priya Lakshmi", role: "Plant Manager, Nifco South India", rating: 4, review: "Quick turnaround times and quality candidates. PVRHR consistently delivers trained workforce that meets our production requirements." },
 ];
 
 const fadeInUp = {
@@ -136,6 +142,35 @@ const Index = () => {
               <motion.div key={client} variants={fadeInUp} className="bg-card rounded-lg p-6 card-elevated border border-border text-center">
                 <Building2 className="w-10 h-10 text-primary mx-auto mb-3" />
                 <p className="font-heading font-semibold text-foreground">{client}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="section-padding">
+        <div className="container-narrow mx-auto">
+          <SectionHeading title="What Our Clients Say" subtitle="Trusted feedback from our valued partners" />
+          <motion.div variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {testimonials.map((t) => (
+              <motion.div key={t.name} variants={fadeInUp} className="bg-card rounded-lg p-6 card-elevated border border-border relative">
+                <Quote className="w-8 h-8 text-primary/20 absolute top-4 right-4" />
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                    <span className="text-primary font-heading font-bold text-lg">{t.name[0]}</span>
+                  </div>
+                  <div>
+                    <p className="font-heading font-semibold text-foreground">{t.name}</p>
+                    <p className="text-sm text-muted-foreground">{t.role}</p>
+                  </div>
+                </div>
+                <div className="flex gap-0.5 mb-3">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star key={i} className={`w-4 h-4 ${i < t.rating ? "text-accent fill-accent" : "text-muted"}`} />
+                  ))}
+                </div>
+                <p className="text-muted-foreground text-sm leading-relaxed">"{t.review}"</p>
               </motion.div>
             ))}
           </motion.div>
