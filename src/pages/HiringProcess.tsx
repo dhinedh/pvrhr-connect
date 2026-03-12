@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { MessageSquare, ListFilter, UserCheck, Award } from "lucide-react";
 import SectionHeading from "@/components/SectionHeading";
+import processBg from "@/assets/process-hero-bg.jpg";
 
 const steps = [
   { icon: MessageSquare, number: "01", title: "Pre-Placement Talk", desc: "Understanding client requirements and job specifications through detailed discussions." },
@@ -20,11 +21,17 @@ const HiringProcess = () => {
       {/* Cinematic Header */}
       <section className="relative min-h-[45vh] pt-32 flex items-center justify-center overflow-hidden">
         {/* Background Effects */}
-        <div className="absolute inset-0 z-0 bg-[var(--hero-bg-light)]">
-          <div className="absolute inset-0 animate-liquid opacity-20" />
+        <div className="absolute inset-0 z-0 bg-[var(--hero-bg-light)] dark:bg-transparent">
+          {/* Light Theme Image Background */}
+          <div className="absolute inset-0 block dark:hidden">
+            <img src={processBg} alt="" className="w-full h-full object-cover opacity-40 scale-105 grayscale" />
+            <div className="absolute inset-0 bg-white/60 backdrop-blur-[1px]" />
+          </div>
+
+          <div className="absolute inset-0 animate-liquid opacity-20 dark:opacity-30" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,hsla(var(--primary),0.12),transparent_50%)]" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,hsla(var(--primary),0.05),transparent_40%)]" />
-          <div className="absolute inset-0 bg-background/20 dark:bg-background/60 backdrop-blur-[2px]" />
+          <div className="absolute inset-0 hidden dark:block bg-background/60 backdrop-blur-[2px]" />
         </div>
 
         <div className="relative z-10 container-narrow mx-auto px-6 text-center">
@@ -35,7 +42,7 @@ const HiringProcess = () => {
           >
             <h1 className="text-5xl md:text-7xl font-heading font-extrabold mb-6 leading-[1.1] tracking-tight text-foreground dark:text-white text-balance">
               Tactical <br />
-              <span className="bg-gradient-to-r from-primary via-primary-light to-accent bg-clip-text text-transparent italic drop-shadow-sm">Deployment Workflow</span>
+              <span className="bg-gradient-to-r from-accent via-accent/80 to-primary bg-clip-text text-transparent italic drop-shadow-sm">Deployment Workflow</span>
             </h1>
             <p className="text-xl md:text-2xl text-foreground/60 max-w-3xl mx-auto font-light leading-relaxed text-balance">
               Our precision-engineered process ensures the right talent is deployed to the right industrial front.
@@ -64,14 +71,14 @@ const HiringProcess = () => {
                   <div className="relative z-10 flex flex-col items-center">
                     <motion.div 
                       whileHover={{ scale: 1.1, rotate: 5 }}
-                      className="w-14 h-14 rounded-2xl bg-card/70 border border-border/10 flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-500 shadow-premium"
+                      className="w-14 h-14 rounded-2xl bg-card/70 border border-border/10 flex items-center justify-center shrink-0 group-hover:bg-accent group-hover:text-accent-foreground transition-all duration-500 shadow-premium"
                     >
                       <step.icon className="w-6 h-6" />
                     </motion.div>
                   </div>
                   <div className="pb-10">
-                    <span className="text-xs font-heading font-black tracking-[0.3em] text-primary/60 uppercase">Phase {step.number}</span>
-                    <h3 className="text-2xl font-bold text-foreground dark:text-white mt-2 mb-4 group-hover:text-primary transition-colors">{step.title}</h3>
+                    <span className="text-xs font-heading font-black tracking-[0.3em] text-accent/80 uppercase">Phase {step.number}</span>
+                    <h3 className="text-2xl font-bold text-foreground dark:text-white mt-2 mb-4 group-hover:text-accent transition-colors">{step.title}</h3>
                     <p className="text-foreground/50 text-lg font-light leading-relaxed max-w-2xl">{step.desc}</p>
                   </div>
                 </motion.div>

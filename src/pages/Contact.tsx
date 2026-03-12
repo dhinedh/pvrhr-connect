@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Phone, Mail, MapPin } from "lucide-react";
 import { toast } from "sonner";
+import contactBg from "@/assets/contact-hero-bg.jpg";
 
 const Contact = () => {
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
@@ -21,9 +22,15 @@ const Contact = () => {
       {/* Cinematic Header */}
       <section className="relative min-h-[45vh] pt-32 flex items-center justify-center overflow-hidden">
         {/* Background Effects */}
-        <div className="absolute inset-0 z-0 bg-[var(--hero-bg-light)]">
+        <div className="absolute inset-0 z-0 bg-[var(--hero-bg-light)] dark:bg-transparent">
+          {/* Light Theme Image Background */}
+          <div className="absolute inset-0 block dark:hidden">
+            <img src={contactBg} alt="" className="w-full h-full object-cover opacity-40 scale-105" />
+            <div className="absolute inset-0 bg-white/60 backdrop-blur-[2px]" />
+          </div>
+
           <div className="absolute inset-0 animate-liquid opacity-20" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,hsla(var(--primary),0.08),transparent_50%)] dark:bg-[radial-gradient(circle_at_bottom_right,rgba(16,185,129,0.05),transparent_50%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,hsla(var(--primary),0.08),transparent_50%)] dark:bg-[radial-gradient(circle_at_bottom_right,hsla(var(--primary),0.1),transparent_50%)]" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,hsla(var(--primary),0.05),transparent_40%)]" />
           <div className="absolute inset-0 bg-background/20 dark:bg-background/60 backdrop-blur-[2px]" />
         </div>
@@ -36,7 +43,7 @@ const Contact = () => {
           >
             <h1 className="text-5xl md:text-7xl font-heading font-extrabold mb-6 leading-[1.1] tracking-tight text-foreground dark:text-white text-balance">
               Strategic <br />
-              <span className="bg-gradient-to-r from-primary via-primary-light to-accent bg-clip-text text-transparent italic drop-shadow-sm">Briefing Room</span>
+              <span className="bg-gradient-to-r from-accent via-accent/80 to-primary bg-clip-text text-transparent italic drop-shadow-sm">Briefing Room</span>
             </h1>
             <p className="text-xl md:text-2xl text-foreground/60 max-w-3xl mx-auto font-light leading-relaxed text-balance">
               Let's discuss how PVRHR can engineer your industrial workforce strategy.
@@ -171,7 +178,7 @@ const Contact = () => {
                     className="bg-card/50 border-border/10 rounded-3xl focus:ring-primary focus:border-primary text-foreground dark:text-white resize-none"
                   />
                 </div>
-                <Button type="submit" size="lg" className="w-full h-16 rounded-2xl bg-primary hover:bg-primary-dark text-primary-foreground font-black text-lg shadow-2xl shadow-primary/20 transition-all hover:scale-[1.02] active:scale-[0.98]">
+                <Button type="submit" size="lg" className="w-full h-16 rounded-2xl bg-accent hover:bg-accent/90 text-accent-foreground font-black text-lg shadow-2xl shadow-accent/20 transition-all hover:scale-[1.02] active:scale-[0.98]">
                   Deploy Message
                 </Button>
               </form>

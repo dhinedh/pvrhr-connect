@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Briefcase, MapPin } from "lucide-react";
 import { toast } from "sonner";
+import careersBg from "@/assets/careers-hero-bg.jpg";
 
 const openings = [
   { title: "Machine Operator", location: "Thiruvallur", type: "Full Time" },
@@ -28,11 +29,17 @@ const Careers = () => {
       {/* Cinematic Header */}
       <section className="relative min-h-[45vh] pt-32 flex items-center justify-center overflow-hidden">
         {/* Background Effects */}
-        <div className="absolute inset-0 z-0 bg-[var(--hero-bg-light)]">
-          <div className="absolute inset-0 animate-liquid opacity-20" />
+        <div className="absolute inset-0 z-0 bg-[var(--hero-bg-light)] dark:bg-transparent">
+          {/* Light Theme Image Background */}
+          <div className="absolute inset-0 block dark:hidden">
+            <img src={careersBg} alt="" className="w-full h-full object-cover opacity-40 scale-105" />
+            <div className="absolute inset-0 bg-white/60 backdrop-blur-[2px]" />
+          </div>
+
+          <div className="absolute inset-0 animate-liquid opacity-20 dark:opacity-30" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,hsla(var(--primary),0.08),transparent_50%)] dark:bg-[radial-gradient(circle_at_top_right,rgba(245,158,11,0.05),transparent_50%)]" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,hsla(var(--primary),0.05),transparent_40%)]" />
-          <div className="absolute inset-0 bg-background/20 dark:bg-background/60 backdrop-blur-[2px]" />
+          <div className="absolute inset-0 hidden dark:block bg-background/60 backdrop-blur-[2px]" />
         </div>
 
         <div className="relative z-10 container-narrow mx-auto px-6 text-center">
@@ -43,7 +50,7 @@ const Careers = () => {
           >
             <h1 className="text-5xl md:text-7xl font-heading font-extrabold mb-6 leading-[1.1] tracking-tight text-foreground dark:text-white text-balance">
               Industrial <br />
-              <span className="bg-gradient-to-r from-primary via-primary-light to-accent bg-clip-text text-transparent italic drop-shadow-sm">Career Vanguard</span>
+              <span className="bg-gradient-to-r from-accent via-accent/80 to-primary bg-clip-text text-transparent italic drop-shadow-sm">Career Vanguard</span>
             </h1>
             <p className="text-xl md:text-2xl text-foreground/60 max-w-3xl mx-auto font-light leading-relaxed text-balance">
               Join the ranks of the elite workforce driving Tamil Nadu's industrial dominance.
@@ -103,7 +110,7 @@ const Careers = () => {
                   onChange={(e) => setForm({ ...form, experience: e.target.value })}
                   className="bg-card/50 border-border/10 h-14 rounded-2xl focus:ring-primary focus:border-primary text-foreground dark:text-white"
                 />
-                <Button type="submit" size="lg" className="w-full h-16 rounded-2xl bg-primary hover:bg-primary-dark text-black font-black text-lg shadow-2xl transition-all">Submit Application</Button>
+                <Button type="submit" size="lg" className="w-full h-16 rounded-2xl bg-accent hover:bg-accent/90 text-accent-foreground font-black text-lg shadow-2xl shadow-accent/20 transition-all hover:scale-[1.02] active:scale-[0.98]">Submit Application</Button>
               </form>
             </motion.div>
 
@@ -123,13 +130,13 @@ const Careers = () => {
                   >
                     <motion.div 
                       whileHover={{ scale: 1.1, rotate: 5 }}
-                      className="w-14 h-14 rounded-2xl bg-card/70 border border-border/10 flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-500 shadow-premium"
+                      className="w-14 h-14 rounded-2xl bg-card/70 border border-border/10 flex items-center justify-center shrink-0 group-hover:bg-accent group-hover:text-accent-foreground transition-all duration-500 shadow-premium"
                     >
                       {/* Icon or other content for magnetic effect can go here */}
                     </motion.div>
                     <div className="flex items-start justify-between">
                       <div>
-                        <h3 className="text-2xl font-bold text-foreground dark:text-white group-hover:text-primary transition-colors">{job.title}</h3>
+                        <h3 className="text-2xl font-bold text-foreground dark:text-white group-hover:text-accent transition-colors">{job.title}</h3>
                         <div className="flex items-center gap-6 mt-4 text-foreground/40">
                           <span className="flex items-center gap-2 text-sm font-medium"><MapPin className="w-4 h-4 text-primary" />{job.location}</span>
                           <span className="flex items-center gap-2 text-sm font-medium"><Briefcase className="w-4 h-4 text-accent" />{job.type}</span>

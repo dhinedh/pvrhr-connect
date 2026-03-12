@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Building2 } from "lucide-react";
 import SectionHeading from "@/components/SectionHeading";
+import clientsBg from "@/assets/clients-hero-bg.jpg";
 
 const clients = [
   { name: "Avary Tech India Pvt Ltd", industry: "Electronics Manufacturing", services: "Manpower Supply, Recruitment" },
@@ -22,15 +23,21 @@ const Clients = () => {
       {/* Cinematic Header */}
       <section className="relative min-h-[45vh] pt-32 flex items-center justify-center overflow-hidden">
         {/* Background Effects */}
-        <div className="absolute inset-0 z-0 bg-[var(--hero-bg-light)]">
-          <div className="absolute inset-0 animate-liquid opacity-20" />
+        <div className="absolute inset-0 z-0 bg-[var(--hero-bg-light)] dark:bg-transparent">
+          {/* Light Theme Image Background */}
+          <div className="absolute inset-0 block dark:hidden">
+            <img src={clientsBg} alt="" className="w-full h-full object-cover opacity-40 scale-105" />
+            <div className="absolute inset-0 bg-white/60 backdrop-blur-[2px]" />
+          </div>
+
+          <div className="absolute inset-0 animate-liquid opacity-20 dark:opacity-30" />
           <motion.div 
             animate={{ scale: [1, 1.1, 1], opacity: [0.1, 0.15, 0.1] }}
             transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
             className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,hsla(var(--primary),0.15),transparent_50%)]" 
           />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,hsla(var(--primary),0.05),transparent_40%)]" />
-          <div className="absolute inset-0 bg-background/20 dark:bg-background/60 backdrop-blur-[2px]" />
+          <div className="absolute inset-0 hidden dark:block bg-background/60 backdrop-blur-[2px]" />
         </div>
 
         <div className="relative z-10 container-narrow mx-auto px-6 text-center">
@@ -41,7 +48,7 @@ const Clients = () => {
           >
             <h1 className="text-5xl md:text-7xl font-heading font-extrabold mb-6 leading-[1.1] tracking-tight text-foreground dark:text-white text-balance">
               Strategic <br />
-              <span className="bg-gradient-to-r from-primary via-primary-light to-accent bg-clip-text text-transparent italic drop-shadow-sm">Client Alliances</span>
+              <span className="bg-gradient-to-r from-accent via-accent/80 to-primary bg-clip-text text-transparent italic drop-shadow-sm">Client Alliances</span>
             </h1>
             <p className="text-xl md:text-2xl text-foreground/60 max-w-3xl mx-auto font-light leading-relaxed text-balance">
               We empower Tamil Nadu's industrial titans with the workforce backbone they demand.
@@ -66,8 +73,8 @@ const Clients = () => {
                 <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-8 text-primary shadow-2xl group-hover:scale-110 transition-transform">
                   <Building2 className="w-10 h-10" />
                 </div>
-                <h3 className="text-2xl font-heading font-bold text-foreground dark:text-white mb-3 group-hover:text-primary transition-colors">{client.name}</h3>
-                <p className="text-sm text-primary/60 font-black uppercase tracking-widest mb-4 italic">{client.industry}</p>
+                <h3 className="text-2xl font-heading font-bold text-foreground dark:text-white mb-3 group-hover:text-accent transition-colors">{client.name}</h3>
+                <p className="text-sm text-accent/80 font-black uppercase tracking-widest mb-4 italic">{client.industry}</p>
                 <p className="text-foreground/40 text-lg font-light leading-snug">{client.services}</p>
               </motion.div>
             ))}

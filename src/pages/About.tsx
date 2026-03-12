@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import SectionHeading from "@/components/SectionHeading";
 import { Target, Eye, CheckCircle } from "lucide-react";
 import SpotlightCard from "@/components/SpotlightCard";
+import aboutBg from "@/assets/about-hero-bg.jpg";
 
 const timeline = [
   { year: "2017", title: "Started as PVR Enterprises", desc: "Began providing HR services to local industries." },
@@ -20,15 +21,21 @@ const About = () => {
       {/* Cinematic Header */}
       <section className="relative min-h-[60vh] pt-32 flex items-center justify-center overflow-hidden">
         {/* Background Effects */}
-        <div className="absolute inset-0 z-0 bg-[var(--hero-bg-light)]">
-          <div className="absolute inset-0 animate-liquid opacity-20" />
+        <div className="absolute inset-0 z-0 bg-[var(--hero-bg-light)] dark:bg-transparent">
+          {/* Light Theme Image Background */}
+          <div className="absolute inset-0 block dark:hidden">
+            <img src={aboutBg} alt="" className="w-full h-full object-cover opacity-40 scale-105" />
+            <div className="absolute inset-0 bg-white/60 backdrop-blur-[2px]" />
+          </div>
+          
+          <div className="absolute inset-0 animate-liquid opacity-20 dark:opacity-30" />
           <motion.div 
             animate={{ scale: [1, 1.1, 1], opacity: [0.08, 0.12, 0.08] }}
             transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
             className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,hsla(var(--primary),0.12),transparent_50%)]" 
           />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,hsla(var(--primary),0.05),transparent_40%)]" />
-          <div className="absolute inset-0 bg-background/20 dark:bg-background/60 backdrop-blur-[2px]" />
+          <div className="absolute inset-0 hidden dark:block bg-background/60 backdrop-blur-[2px]" />
         </div>
 
         <div className="relative z-10 container-narrow mx-auto px-6 text-center">
@@ -39,7 +46,7 @@ const About = () => {
           >
             <h1 className="text-5xl md:text-7xl font-heading font-extrabold mb-6 leading-[1.1] tracking-tight text-foreground dark:text-white text-balance">
               The Architecture of <br />
-              <span className="bg-gradient-to-r from-primary via-primary-light to-accent bg-clip-text text-transparent italic drop-shadow-sm">Industry Potential</span>
+              <span className="bg-gradient-to-r from-accent via-accent/80 to-primary bg-clip-text text-transparent italic drop-shadow-sm">Industry Potential</span>
             </h1>
             <p className="text-xl md:text-2xl text-foreground/60 max-w-3xl mx-auto font-light leading-relaxed text-balance">
               We bridge the gap between industrial ambition and workforce capability with precision and dedication.
@@ -100,7 +107,7 @@ const About = () => {
                   </div>
                   
                   <div className="relative z-10 flex items-center justify-center w-12 h-12">
-                    <div className="w-4 h-4 rounded-full bg-primary shadow-[0_0_20px_rgba(245,158,11,0.5)]" />
+                    <div className="w-4 h-4 rounded-full bg-primary shadow-lg shadow-primary/50" />
                   </div>
 
                   <div className="flex-1 hidden md:block" />
@@ -123,8 +130,8 @@ const About = () => {
               tiltEffect={true}
               className="relative p-12 rounded-[3.5rem] bg-card/70 border border-border/10 overflow-hidden group transition-all duration-700"
             >
-              <div className="absolute -top-10 -right-10 w-40 h-40 bg-primary/5 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity" />
-              <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-8 text-primary shadow-2xl group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-500">
+              <div className="absolute -top-10 -right-10 w-40 h-40 bg-accent/5 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="w-16 h-16 rounded-2xl bg-accent/10 flex items-center justify-center mb-8 text-accent shadow-2xl group-hover:bg-accent group-hover:text-accent-foreground transition-all duration-500">
                 <Eye className="w-8 h-8" />
               </div>
               <h3 className="text-3xl font-heading font-extrabold text-foreground dark:text-white mb-6">Our Vision</h3>
@@ -141,8 +148,8 @@ const About = () => {
               tiltEffect={true}
               className="relative p-12 rounded-[3.5rem] bg-card/70 border border-border/10 overflow-hidden group transition-all duration-700"
             >
-              <div className="absolute -top-10 -left-10 w-40 h-40 bg-accent/5 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity" />
-              <div className="w-16 h-16 rounded-2xl bg-accent/10 flex items-center justify-center mb-8 text-accent shadow-2xl group-hover:bg-accent group-hover:text-accent-foreground transition-all duration-500">
+              <div className="absolute -top-10 -left-10 w-40 h-40 bg-primary/5 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-8 text-primary shadow-2xl group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-500">
                 <Target className="w-8 h-8" />
               </div>
               <h3 className="text-3xl font-heading font-extrabold text-foreground dark:text-white mb-6">Strategic Mission</h3>

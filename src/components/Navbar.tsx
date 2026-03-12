@@ -29,10 +29,10 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-700 w-[95%] max-w-7xl rounded-full border border-white/10 ${
+    <nav className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-700 w-[95%] max-w-7xl rounded-2xl border border-white/20 dark:border-white/10 ${
       scrolled 
-        ? "bg-white/50 dark:bg-black/50 backdrop-blur-3xl shadow-premium py-2" 
-        : "bg-white/30 dark:bg-black/20 backdrop-blur-xl py-4"
+        ? "bg-white/70 dark:bg-black/70 backdrop-blur-2xl shadow-premium py-2" 
+        : "bg-white/40 dark:bg-black/30 backdrop-blur-xl py-4"
     }`}>
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between h-14">
@@ -52,13 +52,13 @@ const Navbar = () => {
                 to={link.path}
                 className={`px-4 py-2 rounded-full text-[13px] font-bold font-heading transition-all duration-500 relative group ${
                   location.pathname === link.path
-                    ? "text-primary"
+                    ? "text-accent"
                     : "text-foreground/42 hover:text-foreground dark:hover:text-white"
                 }`}
               >
                 <motion.span 
-                  whileHover={{ y: -1, scale: 1.05 }}
-                  whileTap={{ y: 0, scale: 0.95 }}
+                  whileHover={{ y: -1 }}
+                  whileTap={{ scale: 0.95 }}
                   className="relative z-10 block"
                 >
                   {link.label}
@@ -66,22 +66,19 @@ const Navbar = () => {
                 {location.pathname === link.path && (
                   <motion.div 
                     layoutId="active-nav"
-                    className="absolute inset-0 bg-primary/5 dark:bg-primary/10 rounded-full border border-primary/20"
+                    className="absolute inset-0 bg-accent/5 dark:bg-accent/10 rounded-full border border-accent/20"
                     transition={{ type: "spring", bounce: 0.3, duration: 0.6 }}
                   />
                 )}
-                <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-primary/40 rounded-full transition-all duration-300 group-hover:w-1/3" />
+                <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-accent/40 rounded-full transition-all duration-300 group-hover:w-1/3" />
               </Link>
             ))}
           </div>
 
           <div className="hidden lg:flex items-center gap-4">
             <ThemeToggle />
-            <Button size="sm" asChild className="rounded-full bg-primary hover:bg-primary-dark text-primary-foreground font-semibold px-6 shadow-[0_0_20px_rgba(245,158,11,0.3)] transition-all hover:scale-105 active:scale-95">
-              <a href="tel:+919080022346" className="flex items-center gap-2">
-                <Phone className="w-3.5 h-3.5" />
-                <span>Call Now</span>
-              </a>
+            <Button size="sm" asChild className="rounded-xl bg-accent hover:bg-accent/90 text-accent-foreground font-bold px-6 shadow-lg shadow-accent/30 transition-all hover:scale-105 active:scale-95">
+              <Link to="/contact">Call Now</Link>
             </Button>
           </div>
 
@@ -116,7 +113,7 @@ const Navbar = () => {
                     onClick={() => setIsOpen(false)}
                     className={`flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium font-heading transition-all ${
                       location.pathname === link.path
-                        ? "text-primary bg-primary/5"
+                        ? "text-accent bg-accent/5"
                         : "text-foreground/60 hover:text-foreground hover:bg-muted/50"
                     }`}
                   >
@@ -125,9 +122,9 @@ const Navbar = () => {
                   </Link>
                 ))}
                 <div className="pt-4 px-4">
-                  <Button asChild className="w-full rounded-xl">
+                  <Button asChild className="w-full rounded-xl bg-accent hover:bg-accent/90 text-accent-foreground font-bold shadow-lg shadow-accent/20">
                     <a href="tel:+919080022346">
-                      <Phone className="w-4 h-4" />
+                      <Phone className="w-4 h-4 mr-2" />
                       Call Us Now
                     </a>
                   </Button>

@@ -3,6 +3,7 @@ import { GraduationCap, Building2, Users, FileText } from "lucide-react";
 import SectionHeading from "@/components/SectionHeading";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import campusBg from "@/assets/campus-hero-bg.jpg";
 
 const features = [
   { icon: GraduationCap, title: "Campus Hiring Programs", desc: "Structured campus recruitment drives connecting students with industry opportunities." },
@@ -22,11 +23,17 @@ const CampusDrive = () => {
       {/* Cinematic Header */}
       <section className="relative min-h-[45vh] pt-32 flex items-center justify-center overflow-hidden">
         {/* Background Effects */}
-        <div className="absolute inset-0 z-0 bg-[var(--hero-bg-light)]">
-          <div className="absolute inset-0 animate-liquid opacity-20" />
+        <div className="absolute inset-0 z-0 bg-[var(--hero-bg-light)] dark:bg-transparent">
+          {/* Light Theme Image Background */}
+          <div className="absolute inset-0 block dark:hidden">
+            <img src={campusBg} alt="" className="w-full h-full object-cover opacity-40 scale-105" />
+            <div className="absolute inset-0 bg-white/60 backdrop-blur-[2px]" />
+          </div>
+
+          <div className="absolute inset-0 animate-liquid opacity-20 dark:opacity-30" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,hsla(var(--primary),0.08),transparent_50%)] dark:bg-[radial-gradient(circle_at_bottom_right,rgba(16,185,129,0.05),transparent_50%)]" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,hsla(var(--primary),0.05),transparent_40%)]" />
-          <div className="absolute inset-0 bg-background/20 dark:bg-background/60 backdrop-blur-[2px]" />
+          <div className="absolute inset-0 hidden dark:block bg-background/60 backdrop-blur-[2px]" />
         </div>
 
         <div className="relative z-10 container-narrow mx-auto px-6 text-center">
@@ -37,7 +44,7 @@ const CampusDrive = () => {
           >
             <h1 className="text-5xl md:text-7xl font-heading font-extrabold mb-6 leading-[1.1] tracking-tight text-foreground dark:text-white text-balance">
               Cultivating <br />
-              <span className="bg-gradient-to-r from-primary via-primary-light to-accent bg-clip-text text-transparent italic drop-shadow-sm">Future Talent</span>
+              <span className="bg-gradient-to-r from-accent via-accent/80 to-primary bg-clip-text text-transparent italic drop-shadow-sm">Future Talent</span>
             </h1>
             <p className="text-xl md:text-2xl text-foreground/60 max-w-3xl mx-auto font-light leading-relaxed text-balance">
               Synthesizing the gap between academic theory and industrial application.
@@ -80,7 +87,7 @@ const CampusDrive = () => {
             <p className="text-xl text-foreground/50 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
               Accelerate your professional journey. Apply now and secure your position in the manufacturing and industrial vanguard.
             </p>
-            <Button size="lg" className="h-16 px-10 rounded-2xl bg-primary hover:bg-primary-dark text-black font-black text-lg transition-all hover:scale-105 shadow-[0_20px_50px_rgba(37,99,235,0.3)]" asChild>
+            <Button size="lg" className="h-16 px-10 rounded-2xl bg-accent hover:bg-accent/90 text-accent-foreground font-black text-lg transition-all hover:scale-105 shadow-2xl shadow-accent/30" asChild>
               <Link to="/careers">Initiate Application</Link>
             </Button>
           </motion.div>

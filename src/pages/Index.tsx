@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Users, Building2, ClipboardCheck, DollarSign, Shield, GraduationCap, Factory, UserCheck, ArrowRight, Quote, Star, Sparkles } from "lucide-react";
+import { Users, Building2, ClipboardCheck, DollarSign, Shield, GraduationCap, Factory, UserCheck, ArrowRight, Quote, Star, Sparkles, Send, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import SectionHeading from "@/components/SectionHeading";
 import AnimatedCounter from "@/components/AnimatedCounter";
 import heroBg from "@/assets/hero-bg.jpg";
+import SpotlightCard from "@/components/SpotlightCard";
 
 const services = [
   { icon: UserCheck, title: "Recruitment Services", desc: "Finding the right candidates for your company with precision and speed." },
@@ -41,104 +44,173 @@ const stagger = {
   visible: { transition: { staggerChildren: 0.12 } },
 };
 
-import SpotlightCard from "@/components/SpotlightCard";
+const EnquiryForm = () => {
+  return (
+    <motion.div 
+      initial={{ opacity: 0, x: 20 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ delay: 0.5, duration: 0.8 }}
+      className="w-full max-w-md mx-auto lg:mx-0 p-8 rounded-3xl bg-white/60 dark:bg-black/40 backdrop-blur-2xl border border-white/20 dark:border-white/10 shadow-premium relative overflow-hidden group"
+    >
+      <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl -mr-16 -mt-16 group-hover:bg-primary/20 transition-colors duration-700" />
+      
+      <h3 className="text-2xl font-heading font-extrabold mb-2 text-foreground dark:text-white">Get Started Today</h3>
+      <p className="text-foreground/60 text-sm mb-6">Leave your details and our experts will contact you within 24 hours.</p>
+      
+      <form className="space-y-4 relative z-10">
+        <div className="space-y-4">
+          <Input 
+            placeholder="Your Name" 
+            className="rounded-xl h-12 bg-white/50 dark:bg-black/20 border-white/20 dark:border-white/10 focus:ring-primary/20" 
+          />
+          <Input 
+            type="email" 
+            placeholder="Email Address" 
+            className="rounded-xl h-12 bg-white/50 dark:bg-black/20 border-white/20 dark:border-white/10 focus:ring-primary/20" 
+          />
+          <Input 
+            placeholder="Phone Number" 
+            className="rounded-xl h-12 bg-white/50 dark:bg-black/20 border-white/20 dark:border-white/10 focus:ring-primary/20" 
+          />
+          <Textarea 
+            placeholder="How can we help you?" 
+            className="rounded-xl min-h-[100px] bg-white/50 dark:bg-black/20 border-white/20 dark:border-white/10 focus:ring-primary/20 resize-none" 
+          />
+        </div>
+        
+        <Button className="w-full h-14 rounded-xl bg-accent hover:bg-accent/90 text-accent-foreground font-bold shadow-lg shadow-accent/20 transition-all hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 group/btn">
+          Submit Enquiry
+          <Send className="w-4 h-4 transition-transform group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1" />
+        </Button>
+        
+        <div className="flex items-center justify-center gap-2 text-[11px] text-foreground/40 font-medium pt-2">
+          <CheckCircle2 className="w-3 h-3 text-primary" />
+          <span>Your data is secure and confidential.</span>
+        </div>
+      </form>
+    </motion.div>
+  );
+};
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-primary/30 selection:text-primary">
       {/* Hero */}
-      <section className="relative min-h-[95vh] pt-32 flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-screen pt-40 pb-20 flex items-center justify-center overflow-hidden">
         {/* Advanced Background */}
-        <div className="absolute inset-0 z-0 bg-[var(--hero-bg-light)]">
-          <img src={heroBg} alt="" className="w-full h-full object-cover opacity-[0.1] dark:opacity-40 scale-110" />
-          <div className="absolute inset-0 animate-liquid opacity-20" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,hsla(var(--primary),0.08),transparent_50%)] dark:bg-[radial-gradient(circle_at_top_right,rgba(245,158,11,0.08),transparent_50%)]" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,hsla(var(--primary),0.05),transparent_40%)]" />
-          <div className="absolute inset-0 bg-background/20 dark:bg-background/60 backdrop-blur-[1px]" />
+        <div className="absolute inset-0 z-0">
+          {/* Light Theme Specific Image Background */}
+          <div className="absolute inset-0 block dark:hidden">
+            <img src={heroBg} alt="" className="w-full h-full object-cover opacity-40 scale-105" />
+            <div className="absolute inset-0 bg-white/60 backdrop-blur-[2px]" />
+          </div>
+          
+          {/* Dark Theme Specific Image Background */}
+          <div className="absolute inset-0 hidden dark:block">
+            <img src={heroBg} alt="" className="w-full h-full object-cover opacity-20 scale-105" />
+            <div className="absolute inset-0 bg-black/80 backdrop-blur-[2px]" />
+          </div>
+
+          <div className="absolute inset-0 animate-liquid opacity-30" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,hsla(var(--primary),0.12),transparent_60%)] dark:bg-[radial-gradient(circle_at_top_right,rgba(12,90,219,0.1),transparent_60%)]" />
         </div>
 
-        {/* Floating elements */}
+        {/* Floating circles */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <motion.div 
-            animate={{ 
-              y: [0, -20, 0],
-              opacity: [0.3, 0.6, 0.3],
-            }}
-            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-1/4 -right-20 w-[40rem] h-[40rem] bg-primary/10 rounded-full blur-[120px]"
+            animate={{ x: [0, 50, 0], y: [0, 30, 0] }}
+            transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+            className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[100px]"
           />
           <motion.div 
-            animate={{ 
-              y: [0, 20, 0],
-              opacity: [0.2, 0.4, 0.2],
-            }}
-            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-            className="absolute -bottom-20 -left-20 w-[35rem] h-[35rem] bg-accent/5 rounded-full blur-[100px]"
+            animate={{ x: [0, -40, 0], y: [0, -20, 0] }}
+            transition={{ duration: 12, repeat: Infinity, ease: "linear", delay: 2 }}
+            className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent/5 rounded-full blur-[80px]"
           />
         </div>
 
-        <div className="relative z-10 container-narrow mx-auto px-6 text-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9, filter: "blur(20px)" }}
-            animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-card/40 backdrop-blur-xl border border-border/10 mb-8 shadow-2xl"
-            >
-              <Sparkles className="w-4 h-4 text-primary animate-pulse" />
-              <span className="text-[13px] font-semibold tracking-[0.2em] text-foreground uppercase">Industrial Excellence Defined</span>
-            </motion.div>
-            
-            <motion.h1 
-              initial={{ opacity: 0, scale: 0.9, filter: "blur(20px)" }}
-              animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-              className="text-5xl md:text-7xl lg:text-8xl font-heading font-extrabold mb-6 leading-[1] tracking-tight text-foreground dark:text-white text-balance"
-            >
-              Architecting the <br />
-              <span className="bg-gradient-to-r from-primary via-primary-light to-accent bg-clip-text text-transparent italic drop-shadow-sm">Industrial Future</span>
-            </motion.h1>
-            
-            <motion.p 
-              initial={{ opacity: 0, transform: "translateY(10px)" }}
-              animate={{ opacity: 1, transform: "translateY(0px)" }}
-              transition={{ delay: 0.8, duration: 1 }}
-              className="text-lg md:text-xl text-foreground/60 mb-12 font-body max-w-3xl mx-auto leading-relaxed text-balance"
-            >
-              PVRHR Connect: Engineering the bridge between professional ambition and enterprise-grade industrial performance.
-            </motion.p>
-            
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1, duration: 0.8 }}
-              className="flex flex-wrap gap-5 justify-center"
-            >
-              <Button size="lg" asChild className="rounded-full px-10 h-16 bg-primary hover:bg-primary-dark text-primary-foreground text-lg font-bold shadow-[0_20px_50px_rgba(37,99,235,0.3)] transition-all hover:scale-105 active:scale-95 group relative overflow-hidden">
+        <div className="relative z-10 container mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            {/* Left Content */}
+            <div className="lg:col-span-7 text-left">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9, filter: "blur(20px)" }}
+                animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <motion.div 
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2, duration: 0.6 }}
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 mb-8"
+                >
+                  <Sparkles className="w-4 h-4 text-accent animate-pulse" />
+                  <span className="text-xs font-bold tracking-widest text-accent uppercase">Innovation in Human Resources</span>
+                </motion.div>
+                
+                <motion.h1 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3, duration: 0.8 }}
+                  className="text-5xl lg:text-7xl xl:text-8xl font-heading font-black mb-6 leading-[1] tracking-tight text-foreground dark:text-white"
+                >
+                  Empowering <br />
+                  <span className="bg-gradient-to-r from-primary via-primary-light to-accent bg-clip-text text-transparent italic">Global Talents</span>
+                </motion.h1>
+                
+                <motion.p 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4, duration: 0.8 }}
+                  className="text-lg md:text-xl text-foreground/60 mb-10 font-body max-w-2xl leading-relaxed font-medium"
+                >
+                  PVRHR Solutions delivers strategic manpower and HR compliance services that drive industrial excellence and professional growth.
+                </motion.p>
+                
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5, duration: 0.8 }}
+                  className="flex flex-wrap gap-4"
+                >
+              <Button size="lg" asChild className="rounded-xl px-10 h-16 bg-primary hover:bg-primary-dark text-primary-foreground text-lg font-bold shadow-xl shadow-primary/30 transition-all hover:scale-105 active:scale-95 group">
                 <Link to="/services">
-                  Our Expertise <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
-                  <div className="absolute inset-0 bg-white/20 -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+                  Explore Services <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
                 </Link>
               </Button>
-              <Button size="lg" variant="outline" asChild className="rounded-full px-10 h-16 backdrop-blur-xl border-border/10 bg-card/40 dark:border-white/10 hover:bg-card/60 text-lg font-bold transition-all hover:scale-105 active:scale-95 text-foreground dark:text-white shadow-sm">
-                <Link to="/contact">Partner With Us</Link>
-              </Button>
-            </motion.div>
-          </motion.div>
+                  <Button size="lg" variant="outline" asChild className="rounded-xl px-10 h-16 border-primary/20 bg-background/50 backdrop-blur-md hover:bg-background/80 text-lg font-bold transition-all hover:scale-105 active:scale-95 shadow-sm">
+                    <Link to="/about">Learn More</Link>
+                  </Button>
+                </motion.div>
+              </motion.div>
+              
+              {/* Trust Indicators */}
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1, duration: 1 }}
+                className="mt-16 pt-8 border-t border-border/10 flex flex-wrap gap-8 items-center"
+              >
+                <p className="text-xs font-bold uppercase tracking-widest text-foreground/30">Trusted by Industry Leaders</p>
+                <div className="flex gap-8 opacity-40 grayscale hover:grayscale-0 transition-all duration-700">
+                  {/* Mock small text logos or shapes if actual logos aren't available */}
+                  {["AVARY", "NIFCO", "SSW", "JANGONE"].map(l => (
+                    <span key={l} className="text-sm font-black tracking-tighter">{l}</span>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Right Form */}
+            <div className="lg:col-span-5 flex justify-center lg:justify-end">
+              <EnquiryForm />
+            </div>
+          </div>
         </div>
         
-        {/* Scroll indicator */}
-        <motion.div 
-          animate={{ y: [0, 10, 0], opacity: [0.3, 1, 0.3] }} 
-          transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2"
-        >
-          <div className="w-[1px] h-16 bg-gradient-to-b from-primary/0 via-primary to-primary/0" />
-        </motion.div>
+        {/* Decorative Scroll Lines */}
+        <div className="absolute right-10 bottom-0 h-32 w-[1px] bg-gradient-to-b from-transparent via-primary/40 to-primary/0 hidden xl:block" />
+        <div className="absolute right-14 bottom-0 h-48 w-[1px] bg-gradient-to-b from-transparent via-primary/20 to-primary/0 hidden xl:block" />
       </section>
 
       {/* Intro Section - Bento Grid Intro */}
@@ -178,13 +250,13 @@ const Index = () => {
                 key={service.title} 
                 variants={fadeInUp} 
                 tiltEffect={index === 0}
-                className={`group relative overflow-hidden rounded-[2.5rem] p-10 border border-border/10 transition-all duration-700 hover:border-primary/40 ${
-                  index === 0 ? "md:col-span-2 md:row-span-2 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent dark:from-primary/20" : 
-                  "bg-card/70 backdrop-blur-xl"
+                className={`group relative overflow-hidden rounded-[2.5rem] p-8 border border-white/10 dark:border-white/5 transition-all duration-700 hover:border-primary/40 ${
+                  index === 0 ? "md:col-span-2 md:row-span-2 bg-gradient-to-br from-primary/20 via-primary/5 to-transparent dark:from-primary/30" : 
+                  "bg-white/40 dark:bg-black/40 backdrop-blur-2xl"
                 }`}
               >
                 {/* Background Glow */}
-                <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-primary/5 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-primary/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                 
                 <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-all duration-500 ${
                   index === 0 ? "bg-primary text-primary-foreground shadow-2xl shadow-primary/40" : "bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground shadow-sm"
@@ -192,22 +264,25 @@ const Index = () => {
                   <service.icon className="w-7 h-7" />
                 </div>
                 
-                <h3 className={`font-heading font-bold mb-3 transition-colors ${
-                  index === 0 ? "text-2xl md:text-3xl text-foreground dark:text-white" : "text-xl text-foreground/90 group-hover:text-primary dark:group-hover:text-white"
+                <h3 className={`font-heading font-black mb-3 transition-colors ${
+                  index === 0 ? "text-2xl md:text-4xl text-foreground dark:text-white" : "text-xl text-foreground/90 group-hover:text-primary dark:group-hover:text-white"
                 }`}>
                   {service.title}
                 </h3>
                 
-                <p className={`leading-relaxed transition-colors ${
+                <p className={`leading-relaxed transition-colors font-medium ${
                   index === 0 ? "text-lg text-foreground/70" : "text-[15px] text-foreground/50 group-hover:text-foreground/70"
                 }`}>
                   {service.desc}
                 </p>
 
                 {index === 0 && (
-                  <div className="mt-8">
-                    <Button variant="link" className="text-primary p-0 h-auto font-bold group" asChild>
-                      <Link to="/services">Learn more <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" /></Link>
+                  <div className="mt-10">
+                    <Button variant="link" className="text-primary p-0 h-auto font-black group text-lg" asChild>
+                      <Link to="/services" className="flex items-center">
+                        Explore Full Capabilities 
+                        <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
+                      </Link>
                     </Button>
                   </div>
                 )}
@@ -244,7 +319,7 @@ const Index = () => {
                 tiltEffect={true}
                 className="p-10 rounded-[3rem] bg-card/70 border border-border/10 backdrop-blur-xl group transition-all duration-500"
               >
-                <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-6 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-500 shadow-2xl">
+                <div className="w-16 h-16 rounded-2xl bg-accent/10 flex items-center justify-center mx-auto mb-6 text-accent group-hover:bg-accent group-hover:text-accent-foreground transition-all duration-500 shadow-2xl">
                   <stat.icon className="w-8 h-8" />
                 </div>
                 <AnimatedCounter end={stat.end} suffix={stat.suffix} />
@@ -323,7 +398,7 @@ const Index = () => {
               Join the elite circle of industries powered by PVRHR precision. Let's discuss your strategic staffing requirements today.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Button size="lg" asChild className="rounded-full px-12 h-16 bg-primary hover:bg-primary-dark text-primary-foreground text-xl font-bold shadow-[0_0_40px_rgba(245,158,11,0.3)] transition-all hover:scale-105 active:scale-95">
+              <Button size="lg" asChild className="rounded-full px-12 h-16 bg-accent hover:bg-accent/90 text-accent-foreground text-xl font-bold shadow-2xl shadow-accent/30 transition-all hover:scale-105 active:scale-95">
                 <Link to="/contact">Claim Your Consultation</Link>
               </Button>
               <Button size="lg" variant="outline" asChild className="rounded-full px-12 h-16 bg-card/60 border-border/10 text-xl font-semibold backdrop-blur-xl transition-all hover:bg-card/80 hover:scale-105 active:scale-95 text-foreground dark:text-white">

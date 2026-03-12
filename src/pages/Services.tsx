@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Users, Building2, ClipboardCheck, DollarSign, Shield, GraduationCap, Factory, UserCheck, ArrowRight } from "lucide-react";
 import SectionHeading from "@/components/SectionHeading";
 import SpotlightCard from "@/components/SpotlightCard";
+import servicesBg from "@/assets/services-hero-bg.jpg";
 
 const services = [
   { icon: UserCheck, title: "Recruitment Services", desc: "We specialize in finding the right candidates for your company through comprehensive screening, skill assessments, and background verification. Our recruitment team works closely with you to understand job requirements and deliver the best-fit talent." },
@@ -25,11 +26,17 @@ const Services = () => {
       {/* Cinematic Header */}
       <section className="relative min-h-[50vh] pt-32 flex items-center justify-center overflow-hidden">
         {/* Background Effects */}
-        <div className="absolute inset-0 z-0 bg-[var(--hero-bg-light)]">
-          <div className="absolute inset-0 animate-liquid opacity-20" />
+        <div className="absolute inset-0 z-0 bg-[var(--hero-bg-light)] dark:bg-transparent">
+          {/* Light Theme Image Background */}
+          <div className="absolute inset-0 block dark:hidden">
+            <img src={servicesBg} alt="" className="w-full h-full object-cover opacity-40 scale-105 grayscale" />
+            <div className="absolute inset-0 bg-white/60 backdrop-blur-[1px]" />
+          </div>
+          
+          <div className="absolute inset-0 animate-liquid opacity-20 dark:opacity-30" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,hsla(var(--primary),0.12),transparent_50%)]" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,hsla(var(--primary),0.05),transparent_40%)]" />
-          <div className="absolute inset-0 bg-background/20 dark:bg-background/60 backdrop-blur-[2px]" />
+          <div className="absolute inset-0 hidden dark:block bg-background/60 backdrop-blur-[2px]" />
         </div>
 
         <div className="relative z-10 container-narrow mx-auto px-6 text-center">
@@ -40,7 +47,7 @@ const Services = () => {
           >
             <h1 className="text-5xl md:text-7xl font-heading font-extrabold mb-6 leading-[1.1] tracking-tight text-foreground dark:text-white text-balance">
               Industrial <br />
-              <span className="bg-gradient-to-r from-primary via-primary-light to-accent bg-clip-text text-transparent italic drop-shadow-sm">Operational Excellence</span>
+              <span className="bg-gradient-to-r from-accent via-accent/80 to-primary bg-clip-text text-transparent italic drop-shadow-sm">Operational Excellence</span>
             </h1>
             <p className="text-xl md:text-2xl text-foreground/60 max-w-3xl mx-auto font-light leading-relaxed text-balance">
               Precision HR frameworks designed for the rigorous demands of modern manufacturing and technology.
@@ -64,13 +71,13 @@ const Services = () => {
                 className="group relative p-12 rounded-[3.5rem] bg-card/70 border border-border/10 overflow-hidden transition-all duration-700 shadow-sm"
               >
                 {/* Background Glow */}
-                <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-primary/5 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-accent/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity" />
                 
-                <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-8 text-primary shadow-2xl group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-500">
+                <div className="w-14 h-14 rounded-2xl bg-accent/10 flex items-center justify-center mb-8 text-accent shadow-2xl group-hover:bg-accent group-hover:text-accent-foreground transition-all duration-500">
                   <service.icon className="w-7 h-7" />
                 </div>
                 
-                <h3 className="text-2xl font-heading font-bold text-foreground dark:text-white mb-4 group-hover:text-primary transition-colors">
+                <h3 className="text-2xl font-heading font-bold text-foreground dark:text-white mb-4 group-hover:text-accent transition-colors">
                   {service.title}
                 </h3>
                 
@@ -78,7 +85,7 @@ const Services = () => {
                   {service.desc}
                 </p>
 
-                <div className="mt-8 flex items-center text-primary font-bold text-sm tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0">
+                <div className="mt-8 flex items-center text-accent font-bold text-sm tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0">
                   Detailed Scope <ArrowRight className="w-4 h-4 ml-2" />
                 </div>
               </SpotlightCard>
